@@ -52,7 +52,7 @@ import TrenPermintaanBuku from "./views/TrenPermintaanBuku/TrenPermintaanBuku";
 import StokMenipis from "./views/tabel_rekomendasi/StokMenipis";
 import InisiasiPengecekanStok from "./views/barang/InisiasiPengecekan";
 import PengecekanStokCabang from "./views/barang/PengecekanStokCabang";
-import PengecekanDetailPage from "./views/barang/PengecekanDetail";
+
 import KirimNotifikasiKOC from "./views/barang/CreateNotifikasiForm";
 import EditStok from "./views/dashboard/EditStokBarang";
 import EditStokCabang from "./views/dashboard/EditStokBarangPusat";
@@ -206,10 +206,6 @@ function App() {
           element={<KirimNotifikasiKOC />}
         />
 
-        <Route
-          path="/pengecekan-stok/detail/:nomorCabang/:idPengajuan"
-          element={<PengecekanDetailPage />}
-        />
         <Route
           path="/inisiasi-pengecekan/:nomorCabang/:idPengajuan"
           element={<PengecekanStokCabang />}

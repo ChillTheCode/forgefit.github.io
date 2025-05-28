@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
+
 const GymLanding = () => {
   const [userType, setUserType] = useState<string>("member");
   const [membershipLevel, setMembershipLevel] = useState<string>("basic");
@@ -49,14 +50,16 @@ const GymLanding = () => {
           <div className="container mx-auto px-6 max-w-4xl text-center">
             <div className="flex justify-center mb-6">
               <div className="p-4 bg-gray-800/50 rounded-full backdrop-blur-sm border border-gray-700">
-                <img 
-                  src="/FLOGO-NEW.png" 
-                  alt="FORGEFIT Logo" 
+                <img
+                  src="/FLOGO-NEW.png"
+                  alt="FORGEFIT Logo"
                   className="w-12 h-12 object-contain"
                   onError={(e) => {
-                    // Fallback to icon if image fails to load
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'block';
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    if (target.nextSibling instanceof HTMLElement) {
+                      target.nextSibling.style.display = 'block';
+                    }
                   }}
                 />
                 <Dumbbell className="text-blue-400 hidden" size={48} style={{color: '#41baf1'}} />
@@ -74,7 +77,12 @@ const GymLanding = () => {
               <button className="text-white px-8 py-4 rounded-full font-bold text-lg hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-2xl" style={{background: 'linear-gradient(to right, #41baf1, #60c5f7)'}}>
                 Start Your Journey
               </button>
-              <button className="border-2 text-white px-8 py-4 rounded-full font-bold text-lg hover:text-black transition-all duration-300 backdrop-blur-sm" style={{borderColor: '#41baf1', color: '#41baf1'}} onMouseEnter={(e) => e.target.style.backgroundColor = '#41baf1'} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>
+              <button
+                className="border-2 text-white px-8 py-4 rounded-full font-bold text-lg hover:text-black transition-all duration-300 backdrop-blur-sm"
+                style={{borderColor: '#41baf1', color: '#41baf1'}}
+                onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#41baf1'}
+                onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = 'transparent'}
+              >
                 View Membership Plans
               </button>
             </div>
@@ -82,7 +90,7 @@ const GymLanding = () => {
         </div>
       </header>
 
-      
+
       {/* Features Section */}
       <section className="py-20 bg-gray-900/50">
         <div className="container mx-auto px-6">
@@ -96,7 +104,7 @@ const GymLanding = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="group p-8 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl hover:from-gray-700 hover:to-gray-800 transition-all duration-300 transform hover:scale-105 border border-gray-700 hover:border-blue-400/50" style={{'--hover-border': '#41baf1'}}>
+            <div className="group p-8 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl hover:from-gray-700 hover:to-gray-800 transition-all duration-300 transform hover:scale-105 border border-gray-700 hover:border-blue-400/50" style={{'--hover-border': '#41baf1'} as React.CSSProperties}>
               <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform" style={{background: 'linear-gradient(to right, #41baf1, #60c5f7)'}}>
                 <Zap className="text-white" size={28} />
               </div>
@@ -372,13 +380,16 @@ const GymLanding = () => {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center mb-6">
-                <img 
-                  src="/FORGEFIT_CLEAN.png" 
-                  alt="FORGEFIT Logo" 
+                <img
+                  src="/FORGEFIT_CLEAN.png"
+                  alt="FORGEFIT Logo"
                   className="w-8 h-8 mr-3 object-contain"
                   onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'inline-block';
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    if (target.nextSibling instanceof HTMLElement) {
+                      target.nextSibling.style.display = 'inline-block';
+                    }
                   }}
                 />
                 <Dumbbell className="mr-3 hidden" size={32} style={{color: '#41baf1'}} />
@@ -390,13 +401,13 @@ const GymLanding = () => {
                 Your ultimate fitness destination with state-of-the-art facilities and expert guidance to help you achieve your goals.
               </p>
               <div className="flex space-x-4">
-                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:transition cursor-pointer" style={{'--hover-bg': '#41baf1'}} onMouseEnter={(e) => e.target.style.backgroundColor = '#41baf1'} onMouseLeave={(e) => e.target.style.backgroundColor = 'rgb(31 41 55)' }>
+                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:transition cursor-pointer" style={{'--hover-bg': '#41baf1'} as React.CSSProperties} onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#41baf1'} onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = '#41baf1' }>
                   <span className="text-sm font-bold">f</span>
                 </div>
-                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:transition cursor-pointer" onMouseEnter={(e) => e.target.style.backgroundColor = '#41baf1'} onMouseLeave={(e) => e.target.style.backgroundColor = 'rgb(31 41 55)' }>
+                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:transition cursor-pointer" onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#41baf1'} onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = '#41baf1' }>
                   <span className="text-sm font-bold">t</span>
                 </div>
-                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:transition cursor-pointer" onMouseEnter={(e) => e.target.style.backgroundColor = '#41baf1'} onMouseLeave={(e) => e.target.style.backgroundColor = 'rgb(31 41 55)' }>
+                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:transition cursor-pointer" onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#41baf1'} onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = '#41baf1' }>
                   <span className="text-sm font-bold">i</span>
                 </div>
               </div>
@@ -405,22 +416,22 @@ const GymLanding = () => {
             <div>
               <h3 className="font-bold text-lg mb-6 text-white">Quick Links</h3>
               <ul className="space-y-3">
-                <li><a href="#" className="text-gray-400 hover:transition" style={{'--hover-color': '#41baf1'}} onMouseEnter={(e) => e.target.style.color = '#41baf1'} onMouseLeave={(e) => e.target.style.color = 'rgb(156 163 175)'}>Membership</a></li>
-                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => e.target.style.color = '#41baf1'} onMouseLeave={(e) => e.target.style.color = 'rgb(156 163 175)'}>Classes</a></li>
-                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => e.target.style.color = '#41baf1'} onMouseLeave={(e) => e.target.style.color = 'rgb(156 163 175)'}>Personal Training</a></li>
-                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => e.target.style.color = '#41baf1'} onMouseLeave={(e) => e.target.style.color = 'rgb(156 163 175)'}>Nutrition</a></li>
-                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => e.target.style.color = '#41baf1'} onMouseLeave={(e) => e.target.style.color = 'rgb(156 163 175)'}>About Us</a></li>
+                <li><a href="#" className="text-gray-400 hover:transition" style={{'--hover-color': '#41baf1'} as React.CSSProperties} onMouseEnter={(e) => (e.target as HTMLAnchorElement).style.color = '#41baf1'} onMouseLeave={(e) => (e.target as HTMLAnchorElement).style.color = 'inherit'}>Membership</a></li>
+                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => (e.target as HTMLAnchorElement).style.color = '#41baf1'} onMouseLeave={(e) => (e.target as HTMLAnchorElement).style.color = 'inherit'}>Classes</a></li>
+                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => (e.target as HTMLAnchorElement).style.color = '#41baf1'} onMouseLeave={(e) => (e.target as HTMLAnchorElement).style.color = 'inherit'}>Personal Training</a></li>
+                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => (e.target as HTMLAnchorElement).style.color = '#41baf1'} onMouseLeave={(e) => (e.target as HTMLAnchorElement).style.color = 'inherit'}>Nutrition</a></li>
+                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => (e.target as HTMLAnchorElement).style.color = '#41baf1'} onMouseLeave={(e) => (e.target as HTMLAnchorElement).style.color = 'inherit'}>About Us</a></li>
               </ul>
             </div>
 
                      <div>
               <h3 className="font-bold text-lg mb-6 text-white">Programs</h3>
               <ul className="space-y-3">
-                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => e.target.style.color = '#41baf1'} onMouseLeave={(e) => e.target.style.color = 'rgb(156 163 175)'}>Strength Training</a></li>
-                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => e.target.style.color = '#41baf1'} onMouseLeave={(e) => e.target.style.color = 'rgb(156 163 175)'}>Cardio Classes</a></li>
-                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => e.target.style.color = '#41baf1'} onMouseLeave={(e) => e.target.style.color = 'rgb(156 163 175)'}>Yoga & Pilates</a></li>
-                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => e.target.style.color = '#41baf1'} onMouseLeave={(e) => e.target.style.color = 'rgb(156 163 175)'}>HIIT Workouts</a></li>
-                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => e.target.style.color = '#41baf1'} onMouseLeave={(e) => e.target.style.color = 'rgb(156 163 175)'}>Recovery Programs</a></li>
+                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => (e.target as HTMLAnchorElement).style.color = '#41baf1'} onMouseLeave={(e) => (e.target as HTMLAnchorElement).style.color = 'inherit'}>Strength Training</a></li>
+                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => (e.target as HTMLAnchorElement).style.color = '#41baf1'} onMouseLeave={(e) => (e.target as HTMLAnchorElement).style.color = 'inherit'}>Cardio Classes</a></li>
+                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => (e.target as HTMLAnchorElement).style.color = '#41baf1'} onMouseLeave={(e) => (e.target as HTMLAnchorElement).style.color = 'inherit'}>Yoga & Pilates</a></li>
+                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => (e.target as HTMLAnchorElement).style.color = '#41baf1'} onMouseLeave={(e) => (e.target as HTMLAnchorElement).style.color = 'inherit'}>HIIT Workouts</a></li>
+                <li><a href="#" className="text-gray-400 hover:transition" onMouseEnter={(e) => (e.target as HTMLAnchorElement).style.color = '#41baf1'} onMouseLeave={(e) => (e.target as HTMLAnchorElement).style.color = 'inherit'}>Recovery Programs</a></li>
               </ul>
             </div>
 
@@ -440,7 +451,7 @@ const GymLanding = () => {
                   info@forgefit.com
                 </li>
               </ul>
-              
+
               {/* Gym Hours */}
               <div className="mt-6 p-4 rounded-lg border" style={{background: 'rgba(65,186,241,0.2)', borderColor: 'rgba(65,186,241,0.3)'}}>
                 <h4 className="font-semibold mb-2" style={{color: '#41baf1'}}>Gym Hours</h4>
@@ -453,8 +464,8 @@ const GymLanding = () => {
           {/* Bottom Copyright */}
           <div className="border-t border-gray-800 mt-12 pt-8 text-center">
             <p className="text-gray-400">
-              © {new Date().getFullYear()} FORGEFIT. All rights reserved. | 
-              <a href="#" className="hover:text-blue-400 transition-colors duration-200 mx-1">Privacy Policy</a> | 
+              © {new Date().getFullYear()} FORGEFIT. All rights reserved. |
+              <a href="#" className="hover:text-blue-400 transition-colors duration-200 mx-1">Privacy Policy</a> |
               <a href="#" className="hover:text-blue-400 transition-colors duration-200 mx-1">Terms of Service</a>
             </p>
           </div>
