@@ -43,17 +43,21 @@ const GymNavbar: React.FC = () => {
 
   return (
     <>
-      <nav className="w-full h-20 flex items-center justify-between px-6 bg-gradient-to-r from-gray-900 via-gray-800 to-black shadow-2xl border-b border-gray-700 relative z-50">
+      <nav className="w-full h-20 flex items-center justify-between px-6 bg-gradient-to-r from-black via-gray-900 to-black shadow-2xl border-b border-gray-700 relative z-50">
         {/* Logo Section */}
         <div 
           className="flex items-center cursor-pointer group" 
           onClick={() => handleNavigation("/")}
         >
-          <div className="p-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-full mr-3 group-hover:scale-110 transition-transform duration-300">
-            <Dumbbell className="text-white" size={28} />
+          <div className="flex items-center mr-3">
+            <img 
+              src="/FLOGO-NEW.png" 
+              alt="FORGEFIT Logo" 
+              className="h-10 w-10 object-contain group-hover:scale-110 transition-transform duration-300"
+            />
           </div>
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent group-hover:from-orange-300 group-hover:to-red-300 transition-all duration-300">
-            FitZone Pro
+          <h1 className="text-2xl font-bold text-white group-hover:text-blue-300 transition-all duration-300">
+            FORGEFIT
           </h1>
         </div>
 
@@ -65,13 +69,17 @@ const GymNavbar: React.FC = () => {
               onClick={() => handleNavigation(item.path)}
               className={`relative px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                 currentPage === item.path
-                  ? "text-orange-400 bg-gray-800/50"
-                  : "text-gray-300 hover:text-orange-400 hover:bg-gray-800/30"
+                  ? "text-blue-400 bg-gray-800/50"
+                  : "text-gray-300 hover:text-blue-400 hover:bg-gray-800/30"
               }`}
+              style={currentPage === item.path ? { color: '#41baf1' } : {}}
             >
               {item.label}
               {currentPage === item.path && (
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-orange-400 rounded-full"></div>
+                <div 
+                  className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full"
+                  style={{ backgroundColor: '#41baf1' }}
+                ></div>
               )}
             </button>
           ))}
@@ -81,7 +89,16 @@ const GymNavbar: React.FC = () => {
         <div className="flex items-center space-x-4">
           {/* Join Now Button - Desktop */}
           <button
-            className="hidden md:block px-6 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-full hover:from-orange-600 hover:to-red-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            className="hidden md:block px-6 py-2 text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25"
+            style={{ 
+              background: `linear-gradient(135deg, #41baf1, #2196F3)`,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = `linear-gradient(135deg, #2196F3, #1976D2)`;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = `linear-gradient(135deg, #41baf1, #2196F3)`;
+            }}
             onClick={() => handleNavigation("/register")}
           >
             Join Now
@@ -89,11 +106,20 @@ const GymNavbar: React.FC = () => {
 
           {/* Notifications */}
           <button 
-            className="relative p-2 text-gray-300 hover:text-orange-400 transition-colors duration-300 hover:bg-gray-800/30 rounded-full" 
+            className="relative p-2 text-gray-300 hover:text-blue-400 transition-colors duration-300 hover:bg-gray-800/30 rounded-full" 
             onClick={handleNotificationClick}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = '#41baf1';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = '';
+            }}
           >
             <Bell size={24} />
-            <span className="absolute -top-1 -right-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-gradient-to-r from-red-500 to-red-600 rounded-full animate-pulse">
+            <span 
+              className="absolute -top-1 -right-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white rounded-full animate-pulse"
+              style={{ background: `linear-gradient(135deg, #41baf1, #2196F3)` }}
+            >
               3
             </span>
           </button>
@@ -101,15 +127,27 @@ const GymNavbar: React.FC = () => {
           {/* Profile */}
           <button
             onClick={handleProfile}
-            className="p-2 text-gray-300 hover:text-orange-400 transition-colors duration-300 hover:bg-gray-800/30 rounded-full"
+            className="p-2 text-gray-300 hover:text-blue-400 transition-colors duration-300 hover:bg-gray-800/30 rounded-full"
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = '#41baf1';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = '';
+            }}
           >
             <User size={24} />
           </button>
 
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden p-2 text-gray-300 hover:text-orange-400 transition-colors duration-300"
+            className="md:hidden p-2 text-gray-300 hover:text-blue-400 transition-colors duration-300"
             onClick={toggleMobileMenu}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = '#41baf1';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = '';
+            }}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -126,15 +164,35 @@ const GymNavbar: React.FC = () => {
                 onClick={() => handleNavigation(item.path)}
                 className={`text-2xl font-medium transition-all duration-300 ${
                   currentPage === item.path
-                    ? "text-orange-400"
-                    : "text-gray-300 hover:text-orange-400"
+                    ? "text-blue-400"
+                    : "text-gray-300 hover:text-blue-400"
                 }`}
+                style={currentPage === item.path ? { color: '#41baf1' } : {}}
+                onMouseEnter={(e) => {
+                  if (currentPage !== item.path) {
+                    e.currentTarget.style.color = '#41baf1';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (currentPage !== item.path) {
+                    e.currentTarget.style.color = '';
+                  }
+                }}
               >
                 {item.label}
               </button>
             ))}
             <button
-              className="px-8 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-full hover:from-orange-600 hover:to-red-600 transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+              className="px-8 py-3 text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+              style={{ 
+                background: `linear-gradient(135deg, #41baf1, #2196F3)`,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = `linear-gradient(135deg, #2196F3, #1976D2)`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = `linear-gradient(135deg, #41baf1, #2196F3)`;
+              }}
               onClick={() => handleNavigation("/register")}
             >
               Join Now
@@ -153,7 +211,7 @@ const GymNavbar: React.FC = () => {
           <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-2xl border border-gray-700 w-96 max-w-md mx-4 relative">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-white flex items-center">
-                <Bell className="mr-3 text-orange-400" size={24} />
+                <Bell className="mr-3" size={24} style={{ color: '#41baf1' }} />
                 Notifications
               </h2>
               <button
@@ -165,35 +223,53 @@ const GymNavbar: React.FC = () => {
             </div>
             
             <div className="space-y-4 max-h-80 overflow-y-auto">
-              <div className="p-4 bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/30 rounded-lg">
+              <div 
+                className="p-4 rounded-lg border"
+                style={{ 
+                  background: `linear-gradient(135deg, rgba(65,186,241,0.2), rgba(33,150,243,0.2))`,
+                  borderColor: 'rgba(65,186,241,0.3)'
+                }}
+              >
                 <div className="flex items-start">
-                  <Trophy className="text-orange-400 mr-3 mt-1" size={20} />
+                  <Trophy className="mr-3 mt-1" size={20} style={{ color: '#41baf1' }} />
                   <div>
                     <p className="font-semibold text-white">New Achievement Unlocked!</p>
                     <p className="text-sm text-gray-300 mt-1">You've completed 10 workouts this month</p>
-                    <p className="text-xs text-orange-400 mt-1">2 minutes ago</p>
+                    <p className="text-xs mt-1" style={{ color: '#41baf1' }}>2 minutes ago</p>
                   </div>
                 </div>
               </div>
               
-              <div className="p-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 rounded-lg">
+              <div 
+                className="p-4 rounded-lg border"
+                style={{ 
+                  background: `linear-gradient(135deg, rgba(65,186,241,0.15), rgba(33,150,243,0.15))`,
+                  borderColor: 'rgba(65,186,241,0.25)'
+                }}
+              >
                 <div className="flex items-start">
-                  <Calendar className="text-blue-400 mr-3 mt-1" size={20} />
+                  <Calendar className="mr-3 mt-1" size={20} style={{ color: '#41baf1' }} />
                   <div>
                     <p className="font-semibold text-white">Class Reminder</p>
                     <p className="text-sm text-gray-300 mt-1">HIIT class starts in 30 minutes</p>
-                    <p className="text-xs text-blue-400 mt-1">25 minutes ago</p>
+                    <p className="text-xs mt-1" style={{ color: '#41baf1' }}>25 minutes ago</p>
                   </div>
                 </div>
               </div>
               
-              <div className="p-4 bg-gradient-to-r from-green-500/20 to-teal-500/20 border border-green-500/30 rounded-lg">
+              <div 
+                className="p-4 rounded-lg border"
+                style={{ 
+                  background: `linear-gradient(135deg, rgba(65,186,241,0.1), rgba(33,150,243,0.1))`,
+                  borderColor: 'rgba(65,186,241,0.2)'
+                }}
+              >
                 <div className="flex items-start">
-                  <Star className="text-green-400 mr-3 mt-1" size={20} />
+                  <Star className="mr-3 mt-1" size={20} style={{ color: '#41baf1' }} />
                   <div>
                     <p className="font-semibold text-white">Weekly Goal Achieved</p>
                     <p className="text-sm text-gray-300 mt-1">You've hit your workout target for this week!</p>
-                    <p className="text-xs text-green-400 mt-1">1 hour ago</p>
+                    <p className="text-xs mt-1" style={{ color: '#41baf1' }}>1 hour ago</p>
                   </div>
                 </div>
               </div>
@@ -207,7 +283,16 @@ const GymNavbar: React.FC = () => {
                 Mark All Read
               </button>
               <button
-                className="flex-1 px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:from-orange-600 hover:to-red-600 transition-all duration-300 font-medium"
+                className="flex-1 px-4 py-2 text-white rounded-lg transition-all duration-300 font-medium"
+                style={{ 
+                  background: `linear-gradient(135deg, #41baf1, #2196F3)`,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = `linear-gradient(135deg, #2196F3, #1976D2)`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = `linear-gradient(135deg, #41baf1, #2196F3)`;
+                }}
                 onClick={toggleModal}
               >
                 View All
